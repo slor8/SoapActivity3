@@ -15,21 +15,15 @@ class NdfdXMLBindingStubTest {
 
         NdfdXMLBindingStub binding = (NdfdXMLBindingStub) new NdfdXMLLocator().getndfdXMLPort();
 
-        String results = binding.latLonListZipCode("53597");
+        String result = binding.latLonListZipCode("53711");
 
-        String results2 = binding.latLonListZipCode("53503");
 
         JAXBContext jaxbContext = JAXBContext.newInstance(DwmlType.class);
-
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-        DwmlType latlong = (DwmlType) jaxbUnmarshaller.unmarshal(new StringReader(results));
-
-        assertEquals("43.1866,-89.452", latlong.getLatLonList());
-
-        DwmlType latlong2 = (DwmlType) jaxbUnmarshaller.unmarshal(new StringReader(results2));
-
-        assertEquals("43.1633,-89.9132", latlong2.getLatLonList());
+        DwmlType latlong = (DwmlType) jaxbUnmarshaller.unmarshal(new StringReader(result));
+        assertEquals("43.0798,-89.3875", latlong.getLatLonList());
 
     }
+
 }
